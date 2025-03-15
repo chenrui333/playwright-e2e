@@ -3,7 +3,7 @@
 # while 1.51.0 was updated on 03/06/2025
 # Ubuntu 24.04 LTS (Noble Numbat), image tags include noble
 # Ubuntu 22.04 LTS (Jammy Jellyfish), image tags include jammy
-FROM mcr.microsoft.com/playwright:v1.51.0-noble
+FROM mcr.microsoft.com/playwright:v1.51.0-noble@sha256:dcc7a57c035cea22d94ef62edaf4e63b2d84352d990f936424344c6b05a3d9b4
 
 COPY package.json package-lock.json* ./
 
