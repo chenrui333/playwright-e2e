@@ -5,6 +5,8 @@
 # Ubuntu 22.04 LTS (Jammy Jellyfish), image tags include jammy
 FROM mcr.microsoft.com/playwright:v1.51.0-noble@sha256:dcc7a57c035cea22d94ef62edaf4e63b2d84352d990f936424344c6b05a3d9b4
 
+WORKDIR /app
+
 COPY package.json package-lock.json* ./
 
 RUN npm ci
