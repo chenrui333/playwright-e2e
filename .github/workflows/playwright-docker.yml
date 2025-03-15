@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Build Docker image
         run: docker build -t playwright-tests .
@@ -34,7 +34,7 @@ jobs:
           mkdir -p playwright-report
           docker run --rm -v "${{ github.workspace }}/playwright-report:/app/playwright-report" playwright-tests
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-${{ matrix.os }}
