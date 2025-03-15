@@ -34,8 +34,8 @@ jobs:
           mkdir -p playwright-report
           docker run --rm -v "${{ github.workspace }}/playwright-report:/app/playwright-report" playwright-tests
 
-      - name: Upload Playwright Report
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.os }}
           path: playwright-report
