@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+test.skip(!!process.env.CI, 'Skip tests in CI');
+
 // use firefox on macos as test UA
 test.use({ userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:136.0) Gecko/20100101 Firefox/136.0"})
 
