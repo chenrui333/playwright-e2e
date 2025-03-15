@@ -70,7 +70,7 @@ export default defineConfig({
     // },
   ],
 
-  ...(!process.env.CI && {
+  ...(process.env.CI !== 'true' && {
     webServer: {
       command: 'cd flashcards && npm run dev',
       port: 3000,
