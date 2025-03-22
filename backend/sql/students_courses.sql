@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS student_course (
+CREATE TABLE IF NOT EXISTS students_courses (
     student_id INTEGER NOT NULL,
     course_id INTEGER NOT NULL,
     semester TEXT NOT NULL CHECK (semester IN ('Fall', 'Spring', 'Summer')),

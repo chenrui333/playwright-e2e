@@ -1,5 +1,5 @@
--- seed some student data
-INSERT INTO student
+-- seed some students data
+INSERT INTO students
   (student_id, name, age, enroll_year, major, gpa)
 VALUES
   (1, 'Alice Smith', 20, 2022, 'Computer Science', 3.8),
