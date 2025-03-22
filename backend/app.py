@@ -13,3 +13,8 @@ def read_root():
 def read_student(student_id: int):
     student = student_service.get_student(student_id)
     return student.model_dump()
+
+@app.get("/students")
+def read_students():
+    students = student_service.get_students()
+    return [student.model_dump() for student in students]

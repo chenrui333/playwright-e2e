@@ -7,3 +7,6 @@ class StudentService:
 
     def get_student(self, student_id: int) -> Student:
         return self.student_repo.get_student_by_id(student_id)
+
+    def get_students(self) -> list[Student]:
+        return self.student_repo.get_all_students()
