@@ -8,7 +8,7 @@ class StudentRepository:
         self.cursor = self.conn.cursor()
 
     def get_student_by_id(self, student_id: int) -> Student:
-        SQL = "SELECT student_id, name, age, enroll_year, major, gpa FROM students WHERE student_id = ?"
+        SQL = "SELECT student_id, name, age, enroll_year, major, gpa FROM student WHERE student_id = ?"
         self.cursor.execute(SQL, (student_id,))
         row = self.cursor.fetchone()
 
@@ -19,7 +19,7 @@ class StudentRepository:
         return Student(**student_data)
 
     def get_all_students(self) -> list[Student]:
-        SQL = "SELECT student_id, name, age, enroll_year, major, gpa FROM students"
+        SQL = "SELECT student_id, name, age, enroll_year, major, gpa FROM student"
         self.cursor.execute(SQL)
         rows = self.cursor.fetchall()
 
