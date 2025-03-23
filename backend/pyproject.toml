@@ -25,3 +25,7 @@ package-mode = false
 
 [tool.poetry.scripts]
 serve = "server:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+httpx = "^0.28.1"

@@ -1,6 +1,10 @@
+default: install server
 
 install:
   poetry update
+
+test:
+  poetry run pytest --maxfail=1 --disable-warnings -q
 
 server:
   poetry run python server.py

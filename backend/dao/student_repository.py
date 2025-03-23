@@ -39,11 +39,10 @@ class StudentRepository:
         """)
         result = db.execute(SQL, student_data)
         db.commit()
-        student_id = result.scalar()
-
-        if not student_id:
-            raise ValueError("Failed to create student")
         new_id = result.lastrowid
+
+        if not new_id:
+            raise ValueError("Failed to create student")
         return self.get_student_by_id(new_id, db)
 
     def update_student(self, student_id: int, student_data: dict, db) -> Student:
