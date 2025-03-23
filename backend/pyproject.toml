@@ -1,0 +1,31 @@
+[project]
+name = "coursework"
+version = "0.1.0"
+description = "coursework system to manage student courses"
+authors = [
+    {name = "Rui Chen",email = "rui@chenrui.dev"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "sqlalchemy (>=2.0.39,<3.0.0)",
+    "pydantic (>=2.5.2,<3.0.0)",
+    "fastapi (>=0.103.1,<1.0.0)",
+    "uvicorn (>=0.24.0,<1.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.scripts]
+serve = "server:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+httpx = "^0.28.1"
