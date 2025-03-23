@@ -1,5 +1,4 @@
--- seed some courses data
-INSERT INTO courses
+INSERT INTO course
   (course_id, course_name, credits, department, semester, year)
 VALUES
   (1, 'Introduction to Programming', 3, 'Computer Science', 'Fall', 2023),

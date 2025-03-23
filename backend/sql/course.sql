@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS courses (
+CREATE TABLE IF NOT EXISTS course (
     course_id INTEGER PRIMARY KEY AUTOINCREMENT,
     course_name TEXT NOT NULL,
     credits INTEGER NOT NULL CHECK (credits > 0),
