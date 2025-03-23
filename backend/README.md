@@ -1,4 +1,5 @@
 # how to run
 
-brew install poetry just
+brew install mise sqlite
+mise install
 just server
