@@ -12,33 +12,33 @@ course_service = CourseService()
 
 
 @router.get("/{course_id}", response_model=Course)
-def read_course(course_id: int, db: Session = Depends(get_db)):
+def read_course(course_id: int, db: Session = Depends(get_db)) -> Course:
     logger.info(f"Fetching course with ID: {course_id}")
     try:
         course = course_service.get_course(course_id, db)
-        return course.model_dump()
+        return course
     except ValueError as e:
         logger.error(f"Error fetching course with ID {course_id}: {str(e)}")
         raise HTTPException(status_code=404, detail=str(e))
 
 
 @router.get("/", response_model=list[Course])
-def read_courses(db: Session = Depends(get_db)):
+def read_courses(db: Session = Depends(get_db)) -> list[Course]:
     logger.info("Fetching all courses")
     try:
         courses = course_service.get_courses(db)
-        return [course.model_dump() for course in courses]
+        return [course for course in courses]
     except ValueError as e:
         logger.error(f"Error fetching courses: {str(e)}")
         raise HTTPException(status_code=404, detail=str(e))
 
 
 @router.post("/", response_model=Course)
-def create_course(course_data: CourseCreate, db: Session = Depends(get_db)):
-    logger.info(f"Creating new course with data: {course_data.model_dump()}")
+def create_course(course_data: CourseCreate, db: Session = Depends(get_db)) -> Course:
+    logger.info(f"Creating new course with data: {course_data}")
     try:
-        new_course = course_service.create_course(course_data.model_dump(), db)
-        return new_course.model_dump()
+        new_course = course_service.create_course(course_data, db)
+        return new_course
     except ValueError as e:
         logger.error(f"Error creating course: {str(e)}")
         raise HTTPException(status_code=400, detail=str(e))
@@ -47,15 +47,15 @@ def create_course(course_data: CourseCreate, db: Session = Depends(get_db)):
 @router.put("/{course_id}", response_model=Course)
 def update_course(
     course_id: int, course_data: CourseCreate, db: Session = Depends(get_db)
-):
+) -> Course:
     logger.info(
-        f"Updating course with ID: {course_id} with data: {course_data.model_dump()}"
+        f"Updating course with ID: {course_id} with data: {course_data}"
     )
     try:
         updated_course = course_service.update_course(
-            course_id, course_data.model_dump(), db
+            course_id, course_data, db
         )
-        return updated_course.model_dump()
+        return updated_course
     except ValueError as e:
         logger.error(f"Error updating course with ID {course_id}: {str(e)}")
         raise HTTPException(status_code=404, detail=str(e))
@@ -65,7 +65,7 @@ def update_course(
 
 
 @router.delete("/{course_id}")
-def delete_course(course_id: int, db: Session = Depends(get_db)):
+def delete_course(course_id: int, db: Session = Depends(get_db)) -> dict:
     logger.info(f"Deleting course with ID: {course_id}")
     try:
         course_service.delete_course(course_id, db)
