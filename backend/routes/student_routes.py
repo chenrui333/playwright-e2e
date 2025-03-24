@@ -11,7 +11,7 @@ router = APIRouter(prefix="/students", tags=["students"])
 student_service = StudentService()
 
 
-@router.get("/{student_id}", response_model=Student)
+@router.get("/{student_id}")
 def read_student(student_id: int, db: Session = Depends(get_db)) -> Student:
     logger.info(f"Fetching student with ID: {student_id}")
     try:
@@ -22,7 +22,7 @@ def read_student(student_id: int, db: Session = Depends(get_db)) -> Student:
         raise HTTPException(status_code=404, detail=str(e))
 
 
-@router.get("/", response_model=list[Student])
+@router.get("/")
 def read_students(db: Session = Depends(get_db)) -> list[Student]:
     logger.info("Fetching all students")
     try:
@@ -33,7 +33,7 @@ def read_students(db: Session = Depends(get_db)) -> list[Student]:
         raise HTTPException(status_code=404, detail=str(e))
 
 
-@router.post("/", response_model=Student)
+@router.post("/")
 def create_student(student_data: StudentCreate, db: Session = Depends(get_db)) -> Student:
     logger.info(f"Creating new student with data: {student_data}")
     try:
@@ -44,7 +44,7 @@ def create_student(student_data: StudentCreate, db: Session = Depends(get_db)) -
         raise HTTPException(status_code=400, detail=str(e))
 
 
-@router.put("/{student_id}", response_model=Student)
+@router.put("/{student_id}")
 def update_student(
     student_id: int, student_data: StudentCreate, db: Session = Depends(get_db)
 ) -> Student:

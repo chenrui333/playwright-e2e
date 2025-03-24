@@ -11,7 +11,7 @@ router = APIRouter(prefix="/courses", tags=["courses"])
 course_service = CourseService()
 
 
-@router.get("/{course_id}", response_model=Course)
+@router.get("/{course_id}")
 def read_course(course_id: int, db: Session = Depends(get_db)) -> Course:
     logger.info(f"Fetching course with ID: {course_id}")
     try:
@@ -22,7 +22,7 @@ def read_course(course_id: int, db: Session = Depends(get_db)) -> Course:
         raise HTTPException(status_code=404, detail=str(e))
 
 
-@router.get("/", response_model=list[Course])
+@router.get("/")
 def read_courses(db: Session = Depends(get_db)) -> list[Course]:
     logger.info("Fetching all courses")
     try:
@@ -33,7 +33,7 @@ def read_courses(db: Session = Depends(get_db)) -> list[Course]:
         raise HTTPException(status_code=404, detail=str(e))
 
 
-@router.post("/", response_model=Course)
+@router.post("/")
 def create_course(course_data: CourseCreate, db: Session = Depends(get_db)) -> Course:
     logger.info(f"Creating new course with data: {course_data}")
     try:
@@ -44,7 +44,7 @@ def create_course(course_data: CourseCreate, db: Session = Depends(get_db)) -> C
         raise HTTPException(status_code=400, detail=str(e))
 
 
-@router.put("/{course_id}", response_model=Course)
+@router.put("/{course_id}")
 def update_course(
     course_id: int, course_data: CourseCreate, db: Session = Depends(get_db)
 ) -> Course:
