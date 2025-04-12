@@ -1,7 +1,6 @@
 from dao import StudentRepository
 from model import Student
 
-
 class StudentService:
     def __init__(self):
         self.student_repo = StudentRepository()
