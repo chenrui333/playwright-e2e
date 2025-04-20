@@ -15,5 +15,5 @@ server-alt:
 build-image:
   docker build -t backend .
 
-run:
+run: build-image
   docker run -d -p 8000:8000 backend
