@@ -4,8 +4,6 @@ from service import teacher_service
 import logging_config
 from db import get_db
 
-
-
 router = APIRouter(prefix="/teachers", tags=["teachers"])
 service = teacher_service.TeacherService()
 logger = logging_config.get_logger(__name__)
