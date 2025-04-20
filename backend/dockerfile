@@ -3,7 +3,7 @@ FROM python:3.13-slim
 # Set working directory
 WORKDIR /app
 
-# Set environment variables
+# Environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     POETRY_VERSION=2.1.1 \
@@ -14,7 +14,6 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
-    sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
@@ -28,18 +27,8 @@ COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false \
     && poetry install
 
-
 # Copy application code
 COPY . .
-
-# Initialize SQLite database
-RUN mkdir -p /data \
-    && sqlite3 /data/coursework.db ".read ./sql/teacher.sql" \
-    && sqlite3 /data/coursework.db ".read ./sql/course.sql" \
-    && sqlite3 /data/coursework.db ".read ./sql/student.sql"
-
-# Set database path environment variable
-ENV DATABASE_URL="sqlite:////data/coursework.db"
 
 # Expose port
 EXPOSE 8000
