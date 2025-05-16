@@ -3,7 +3,7 @@
 # while 1.51.0 was updated on 03/06/2025
 # Ubuntu 24.04 LTS (Noble Numbat), image tags include noble
 # Ubuntu 22.04 LTS (Jammy Jellyfish), image tags include jammy
-FROM mcr.microsoft.com/playwright:v1.51.1-noble@sha256:146d046a8d79a1b3a87596c4457b0b1c47f811bf4fc2cc1b99e873ae7f1cbbbd
+FROM mcr.microsoft.com/playwright:v1.52.0-noble@sha256:a021500a801bab0611049217ffad6b9697d827205c15babb86a53bc1a61c02d5
 
 ENV CI=true
 
